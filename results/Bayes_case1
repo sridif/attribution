@@ -1,0 +1,78 @@
+(p1,p2,p3,p4)
+
+exploiters   : correct total
+nonexploiters: correct total
+
+
+----1-----
+p1 =0.01
+p2 =0.01
+p3 =500
+p4=500
+exploiters   : 1884  2016
+nonexploiters: 48143 64911
+
+-----2---
+
+p1 =0.01
+p2 =0.001
+p3 =300
+p4 =500
+
+1863 2016
+33451 64911
+
+---3----
+(.009,.1,600,300)
+
+1038 2016
+60930 64911
+
+
+-----4----
+
+(.05,.1,300,300)
+
+1881 2016
+47223 64911
+
+
+
+remarks..
+ improvements ...
+   bayes probablity - 
+   better frequency
+     one count per document
+     to lower every thing
+
+    
+
+
+------after better freq thingy 
+
+---1---
+p1 =0.01
+p2 =0.01
+p3 =500
+p4=500
+
+
+1881 2016
+44560 64911
+
+
+----2----
+same ps as above..
+---removing the differential thingy for the negative oners..
+
+981 2016
+60966 64911
+
+
+
+improvement...
+  
+------startlingy strong features.. for the main negative stuff.
+ oor use the positive bayes thingy ...
+  http://nltk.org/_modules/nltk/classify/positivenaivebayes.html
+
