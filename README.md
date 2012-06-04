@@ -1,8 +1,6 @@
 attribution
 ===========
 
-For anydoubt 
-
 Source folder - 
 
 pth.py : holds the path to training and test files. 
@@ -29,6 +27,9 @@ Results folder -
          Scope for improvement - making the features taking into account the frequency when the bayes classifier is being constructed.
 
 
+For anydoubt
+        contact
+        elango at kth dot se
 
 
 
