@@ -49,22 +49,6 @@ def create_feature1(p1, p2, p3, p4):
 def naive_bayes_classifier(pos , neg):
   #result = False # false ~ non exploiter
   confidence=1
-  #f1 = open(pth.ExpDict,'r')
-  #f2 = open(pth.NonexpDict,'r')
-  #ExpDict   =pickle.load(f1)
-  #NonexpDict=pickle.load(f2)
-  #exp= ExpDict.keys()[:1000]
-  #nexp= NonexpDict.keys()[:1000]
-  #msgs = pu.get_msgs_in(conv_id)
-  #words = []
-  #for msg in msgs:
-  #  words+= msg.split()
-  #TestFeat = dict([(word,True) for word in words])
-  #for word in exp:
-  #  PosFeat= (dict((word,True)),'pos')
-  #for word in nexp:
-  #  NegFeat= (dict((word,True)),'neg')
-
   PosFeat = [({word :True}, 'pos') for word in pos]
   NegFeat = [({word :True},'neg')for word in neg]
 
@@ -74,6 +58,14 @@ def naive_bayes_classifier(pos , neg):
   #result= classifier.classify(TestFeat)
   
   return classifier
+
+
+def create_feature2():
+  print '-- under construciton --' 
+  
+def positive_bayes_classifier(feat2):
+  print '-- under construction --'
+
 
 def test1(classifier,ls1 , ls2):
   #classifier= naive_bayes_classifier()
@@ -110,8 +102,8 @@ def eval_set(classifier, pos_conv_id, neg_conv_id):
 
 
 def main():
-  # print 'wtf r u doing :P'
-  # to update .. from the scrpt .. :)
+  # print '----^^^⁻---'
+  # to update .. from the scrpt .. 
   
   ls1 = pu.convs_list_exp()
   ls2 = pu.convs_list_nonexp()
