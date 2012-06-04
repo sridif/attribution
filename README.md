@@ -21,7 +21,7 @@ pan_alg.py:
 Results folder - 
 
          The best result so far is 93 % true positive
-                                   25 % true negative
+                                   25 % false positive
 
 
          Scope for improvement - making the features taking into account the frequency when the bayes classifier is being constructed.
