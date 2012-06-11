@@ -99,18 +99,65 @@ def eval_set(classifier, pos_conv_id, neg_conv_id):
   print poscount, len(pos_conv_id)
   print negcount, len(neg_conv_id)
 
+'''
+def classify_senti(conv_id)
+  if pos send distance to the mail machine ..
+  
+  
+  
+'''
+def result(classifier, conv_ids):
+  for i in range(0,len(conv_ids)):
+    ft= pu.get_words_featureset(conv_ids[i])
+    pb=classifier.classify(ft)
+    if pb == 'pos':
+      handle_conv(classifier, conv_ids[i])
+    
 
+
+def handle_conv(classifier, conv_id):
+  print conv_id
+  # get number of lines in conv
+  num_lines= pu.get_num_lines(conv_id)
+  for i in range(0,num_lines):
+    # message 1 is the problem.
+    msg= pu.get_msg_featureset(i)
+    pt= classifier.classify(msg)
+    if pt== 'pos':
+      handle_msg(1,conv_id)
+
+def handle_msg(msg_line, conv_id):
+  author= get_author_in(msg_line, conv_id)
+  out_author(author)
+  msg= get_msg_tag(msg_lin, conv_id)
+  out_msg(msg)
+  #handle_msg(msg_line,)
+  #psuedo -
+  #pos_conv_id.xml -> retrieve messages .. -> bayesian.. poisitve sent to output.
+
+
+def out_author():
+  print 'booyay'
+
+def out_msg():
+  print 'booyay'
+
+def init_out_msg():
+  print 'booyay'
+
+def end_out_msg():
+  print 'booyay'
 
 def main():
-  # print '----^^^⁻---'
+  #print 
   # to update .. from the scrpt .. 
-  
   ls1 = pu.convs_list_exp()
   ls2 = pu.convs_list_nonexp()
   pos, neg = create_feature1(.01,.01,500,500)
   classifier = naive_bayes_classifier(pos,neg)
-  eval_set(classifier, ls1 , ls2)
-  
+  #eval_set(classifier, ls1 ,ls2)
+  result(classifier,ls1)
+
 if __name__ == '__main__':
   main()
   

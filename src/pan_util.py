@@ -66,6 +66,16 @@ def get_test_authors_in( conv_id ):
       authors.append(author)
   return authors
 
+def get_num_lines(conv_id):
+  id_xml = pth.TRAIN + conv_id + '.xml'
+  conv= ET.parse(id_xml)
+  convRT = conv.getroot()
+  return len(convRT)
+    
+
+  
+
+
 def get_conv_len_train(conv_id):
   # given a conversation id ... get the length of the conversation 
   length =0
@@ -127,9 +137,6 @@ def convs_list_nonexp():
       nonexps.append(conv)
   return nonexps
 
-  
-
- 
 def get_msgs_in(conv_id):
   msgs = []
   fl = open(pth.TRAIN + conv_id +'.xml')
@@ -156,3 +163,36 @@ def get_words_featureset(conv_id):
         words[word]=True
   return words
 
+def get_msg_featureset(msg_line, conv_id):
+  words={}
+  fl= open(pth.TRAIN + conv_id + '.xml')
+  conv= ET.parse(fl)
+  convRT=conv.getroot()
+  
+  msg= convRT[msg_line]
+  text= msg[2].text
+  if text is not None:
+    ls= text.split()
+    for word in ls:
+      words[word] = True
+  return words
+
+def get_author_in(msg_line, conv_id):
+  
+  fl= open(pth.TRAIN + conv_id + '.xml')
+  conv=ET.parse(fl)
+  convRT = conv.getroot()
+  msg = convRT[msg_line]
+  author = msg[0].text # change it to attribute extraction and not value
+  return author
+  
+  
+
+def get_msg_tag(msg_line,conv_id):
+  fl=open(pth.TRAIN + conv_id + '.xml')
+  conv= ET.parse(fl)
+  convRT = conv.getroot()
+  msg= convRT[msg_line]
+  return msg
+
+#def get_msg_tag(msg_line,conv_id):
