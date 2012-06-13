@@ -121,42 +121,80 @@ def handle_conv(classifier, conv_id):
   num_lines= pu.get_num_lines(conv_id)
   for i in range(0,num_lines):
     # message 1 is the problem.
-    msg= pu.get_msg_featureset(i)
+    msg= pu.get_msg_featureset(i,conv_id)
     pt= classifier.classify(msg)
     if pt== 'pos':
       handle_msg(1,conv_id)
 
+
 def handle_msg(msg_line, conv_id):
-  author= get_author_in(msg_line, conv_id)
+  author= pu.get_author_in(msg_line, conv_id)
   out_author(author)
-  msg= get_msg_tag(msg_lin, conv_id)
+  msg= pu.get_msg_tag(msg_line, conv_id)
   out_msg(msg)
+
   #handle_msg(msg_line,)
   #psuedo -
   #pos_conv_id.xml -> retrieve messages .. -> bayesian.. poisitve sent to output.
 
 
-def out_author():
-  print 'booyay'
+authors_file= open(pth.TEMP+'/authors.txt', 'w')
+messages_file= open(pth.TEMP+'/messages.txt', 'w')
+def out_author(author):
+  print author
+  authors_file.write(author)
 
-def out_msg():
+def out_msg(msg):
+  #temp = open(pth.TEMP + 'temp.xml',w)
+  #save_temp_xml(msg)
+  # read tis temp xml file.
+  #
+  out= pu.ET.dump(msg)
+  if out is not None:
+    messages_file.write(out)
   print 'booyay'
 
 def init_out_msg():
-  print 'booyay'
+  #print 'booyay'
+  authors_file.write('er .. testing')
+  
 
 def end_out_msg():
-  print 'booyay'
+  #print 'booyay'
+  authors_file.close()
+  messages_file.close()
 
-def main():
-  #print 
-  # to update .. from the scrpt .. 
+
+def create_classifier_dump():
   ls1 = pu.convs_list_exp()
   ls2 = pu.convs_list_nonexp()
   pos, neg = create_feature1(.01,.01,500,500)
   classifier = naive_bayes_classifier(pos,neg)
+  class_file = open(pth.TEMP + '/classifier','w') 
+  pickle.dump(classifier, class_file)
+  class_file.close()
+
+
+def june_eleven():
+  class_file = open(pth.TEMP + '/classifier','r')
+  classifier=pickle.load(class_file)
+  ls=pu.convs_list_exp()
+  result(classifier,ls[:10])
+  
+def main():
+  #print 
+  # to update .. from the scrpt .. 
+  #ls1 = pu.convs_list_exp()
+  #ls2 = pu.convs_list_nonexp()
+  #pos, neg = create_feature1(.01,.01,500,500)
+  #classifier = naive_bayes_classifier(pos,neg)
+  
   #eval_set(classifier, ls1 ,ls2)
-  result(classifier,ls1)
+  #result(classifier,ls1)
+  print '<conversations>'
+  june_eleven()
+  print '</conversations>' 
+ 
 
 if __name__ == '__main__':
   main()

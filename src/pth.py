@@ -5,7 +5,7 @@ PTH=os.getcwd()
 TRAIN = PTH + '/../data/pan_train/'
 #print TRAIN
 TEST = PTH + '/../data/pan_test/'
-
+TEMP = PTH + '/../data/temp/'
 XML_TRAIN = TRAIN + 'sexual-predator-identification-pan12-train-2012-05-01.xlm'
 XML_TEST  = TEST  + 'sexual-predator-identification-pan12-test-2012-05-17.xlm'
 PredFile = TRAIN + 'sexual-predator-identification-pan12-train-predators-2012-05-01.txt' 

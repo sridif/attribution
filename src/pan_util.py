@@ -195,4 +195,13 @@ def get_msg_tag(msg_line,conv_id):
   msg= convRT[msg_line]
   return msg
 
-#def get_msg_tag(msg_line,conv_id):
+
+def exp(): 
+  fl=open(pth.TRAIN + 'd0dfab93d7b5e33eccdb58238d2b08d0' + '.xml')
+  fl2= open(pth.TEMP + 'element_tree_test')
+  conv= ET.parse(fl)
+  convRT = conv.getroot()
+  fl2.write(ET.dump(convRT))
+
+
+  #def get_msg_tag(msg_line,conv_id):
