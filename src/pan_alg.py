@@ -116,16 +116,22 @@ def result(classifier, conv_ids):
 
 
 def handle_conv(classifier, conv_id):
-  print conv_id
+  #print conv_id
   # get number of lines in conv
   num_lines= pu.get_num_lines(conv_id)
+  flag=False
   for i in range(0,num_lines):
     # message 1 is the problem.
     msg= pu.get_msg_featureset(i,conv_id)
     pt= classifier.classify(msg)
     if pt== 'pos':
-      handle_msg(1,conv_id)
+      if flag is False :
+         flag= True
+         print '<conversation id='+ str(conv_id) +' >' 
+      handle_msg(i,conv_id)
 
+  if flag:
+    print '</conversation>'
 
 def handle_msg(msg_line, conv_id):
   author= pu.get_author_in(msg_line, conv_id)
@@ -139,20 +145,24 @@ def handle_msg(msg_line, conv_id):
 
 
 authors_file= open(pth.TEMP+'/authors.txt', 'w')
+authors={}
 messages_file= open(pth.TEMP+'/messages.txt', 'w')
 def out_author(author):
-  print author
-  authors_file.write(author)
+  #print author
+  global authors
+  authors[author]=True
+  #authors_file.write(author)
+  #authors_file.write('\n')
 
 def out_msg(msg):
   #temp = open(pth.TEMP + 'temp.xml',w)
   #save_temp_xml(msg)
-  # read tis temp xml file.
+  #read tis temp xml file.
   #
   out= pu.ET.dump(msg)
   if out is not None:
     messages_file.write(out)
-  print 'booyay'
+  #print 'booyay'
 
 def init_out_msg():
   #print 'booyay'
@@ -178,8 +188,9 @@ def create_classifier_dump():
 def june_eleven():
   class_file = open(pth.TEMP + '/classifier','r')
   classifier=pickle.load(class_file)
-  ls=pu.convs_list_exp()
-  result(classifier,ls[:10])
+  ls=pu.convs_list_test()
+  result(classifier,ls)
+  
   
 def main():
   #print 
@@ -194,8 +205,12 @@ def main():
   print '<conversations>'
   june_eleven()
   print '</conversations>' 
- 
+  keys= authors.keys()
+  for key in keys:
+    authors_file.write(key)
+    authors_file.write('\n')
 
+ 
 if __name__ == '__main__':
   main()
   

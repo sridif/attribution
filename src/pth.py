@@ -2,7 +2,7 @@ import os
 
 PTH=os.getcwd()
 #print PTH
-TRAIN = PTH + '/../data/pan_train/'
+TRAIN = PTH + '/../data/pan_test/'
 #print TRAIN
 TEST = PTH + '/../data/pan_test/'
 TEMP = PTH + '/../data/temp/'

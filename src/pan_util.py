@@ -151,7 +151,7 @@ def get_msgs_in(conv_id):
 
 def get_words_featureset(conv_id):
   words={}
-  fl = open(pth.TRAIN + conv_id +'.xml')
+  fl = open(pth.TEST + conv_id +'.xml')
   conv = ET.parse(fl)
   convRT = conv.getroot()
   
@@ -165,7 +165,7 @@ def get_words_featureset(conv_id):
 
 def get_msg_featureset(msg_line, conv_id):
   words={}
-  fl= open(pth.TRAIN + conv_id + '.xml')
+  fl= open(pth.TEST + conv_id + '.xml')
   conv= ET.parse(fl)
   convRT=conv.getroot()
   
@@ -179,7 +179,7 @@ def get_msg_featureset(msg_line, conv_id):
 
 def get_author_in(msg_line, conv_id):
   
-  fl= open(pth.TRAIN + conv_id + '.xml')
+  fl= open(pth.TEST + conv_id + '.xml')
   conv=ET.parse(fl)
   convRT = conv.getroot()
   msg = convRT[msg_line]
@@ -189,7 +189,7 @@ def get_author_in(msg_line, conv_id):
   
 
 def get_msg_tag(msg_line,conv_id):
-  fl=open(pth.TRAIN + conv_id + '.xml')
+  fl=open(pth.TEST + conv_id + '.xml')
   conv= ET.parse(fl)
   convRT = conv.getroot()
   msg= convRT[msg_line]
